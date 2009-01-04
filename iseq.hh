@@ -18,7 +18,7 @@ namespace wt {
 /// \see iseq()
 template<typename In>
 struct input_sequence_range : public std::pair<In,In> {
-    input_sequence_range(In first, In last) : std::pair(first, last) { }
+    input_sequence_range(In first, In last) : std::pair<In,In>(first, last) { }
 };
 
 /// Helper function to generate an input_sequence_range which expresses the
