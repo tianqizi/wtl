@@ -1,5 +1,5 @@
-#ifndef ALGORITHM_HH_
-#define ALGORITHM_HH_
+#ifndef WTSTL_ALGORITHM_HH_
+#define WTSTL_ALGORITHM_HH_
 
 ///////////////////////////////////////////////////////////////////////////////
 /// STL extensions
@@ -87,4 +87,4 @@ Out copy_if(input_sequence_range<In> range, Out result, Pred op)
 
 }
 
-#endif // ALGORITHM_HH_
+#endif // WTSTL_ALGORITHM_HH_
