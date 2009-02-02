@@ -41,6 +41,12 @@ Fwd adjacent_find(input_sequence_range<Fwd> range, BinPred pred)
     return std::adjacent_find(range.first, range.second, pred);
 }
 
+template <typename In, typename Op>
+Op for_each(input_sequence_range<In> range, Op op)
+{
+    return std::for_each(range.first, range.second, op);
 }
+
+} // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
