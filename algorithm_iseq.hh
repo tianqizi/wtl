@@ -47,6 +47,18 @@ Op for_each(input_sequence_range<In> range, Op op)
     return std::for_each(range.first, range.second, op);
 }
 
+template <typename In, typename V>
+In find(input_sequence_range<In> range, const V& val)
+{
+    return std::find(range.first, range.second, val);
+}
+
+template <typename In, typename Pred>
+In find_if(input_sequence_range<In> range, Pred op)
+{
+    return std::find_if(range.first, range.second, op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
