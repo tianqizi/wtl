@@ -9,7 +9,7 @@
 /// Matan Nassau <matan.nassau@gmail.com>
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wtstl/iseq.hh>
+#include <wtl/iseq.hh>
 
 namespace wt {
 

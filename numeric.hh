@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <numeric>
-#include <wtstl/numeric_iseq.hh>
+#include <wtl/numeric_iseq.hh>
 
 namespace wt {
 
