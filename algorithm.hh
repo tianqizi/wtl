@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <wtstl/iseq.hh>
-#include <wstl/algorithm_iseq.hh>
+#include <wtstl/algorithm_iseq.hh>
 
 namespace wt {
 
