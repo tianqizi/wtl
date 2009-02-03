@@ -171,6 +171,18 @@ Fwd search_n(input_sequence_range<Fwd> range, Size n, const V& val, BinPred op)
     return std::search(range.first, range.second, n, val, op);
 }
 
+template <typename In, typename Out>
+Out copy(input_sequence_range<In> range, Out result)
+{
+    return std::copy(range.first, range.second, result);
+}
+
+template <typename Bi, typename Bi2>
+Out copy_backward(input_sequence_range<Bi> range, Bi2 result)
+{
+    return std::copy_backward(range.first, range.second, result);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
