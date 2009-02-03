@@ -59,6 +59,118 @@ In find_if(input_sequence_range<In> range, Pred op)
     return std::find_if(range.first, range.second, op);
 }
 
+template <typename Fwd, typename Fwd2>
+Fwd find_first_of(input_sequence_range<Fwd> range,
+                  input_sequence_range<Fwd2> range2)
+{
+    return std::find_first_of(range.first, range.second,
+                              range2.first, range2.second);
+}
+
+template <typename Fwd, typename Fwd2, typename BinPred>
+Fwd find_first_of(input_sequence_range<Fwd> range,
+                  input_sequence_range<Fwd2> range2,
+                  BinPred op)
+{
+    return std::find_first_of(range.first, range.second,
+                              range2.first, range2.second,
+                              op);
+}
+
+template <typename In, typename V>
+typename std::iterator_traits<In>::difference_type
+count(input_sequence_range<In> range, const V& val)
+{
+    return std::count(range.first, range.second, val);
+}
+
+template <typename In, typename V, typename BinPred>
+typename std::iterator_traits<In>::difference_type
+count_if(input_sequence_range<In> range, const V& val, BinPred op)
+{
+    return std::count(range.first, range.second, val, pred);
+}
+
+template <typename In, typename In2>
+bool equal(input_sequence_range<In> range, input_sequence_range<In2> range2)
+{
+    return std::equal(range.first, range.second, range2.first, range2.second);
+}
+
+template <typename In, typename In2, typename BinPred>
+bool equal(input_sequence_range<In> range,
+           input_sequence_range<In2> range2,
+           BinPred op)
+{
+    return std::equal(range.first, range.second,
+                      range2.first, range2.second,
+                      op);
+}
+
+template <typename In, typename In2>
+std::pair<In,In2> mismatch(input_sequence_range<In> range,
+                           input_sequence_range<In2> range2)
+{
+    return std::mismatch(range.first, range.second,
+                         range2.first, range2.second);
+}
+
+template <typename In, typename In2, typename BinPred>
+std::pair<In,In2> mismatch(input_sequence_range<In> range,
+                           input_sequence_range<In2> range2,
+                           BinPred op)
+{
+    return std::mismatch(range.first, range.second,
+                         range2.first, range2.second,
+                         op);
+}
+
+template <typename Fwd, typename Fwd2>
+Fwd search(input_sequence_range<Fwd> range, input_sequence_range<Fwd2> range2)
+{
+    return std::search(range.first, range.second, range2.first, range2.second);
+}
+
+template <typename Fwd, typename Fwd2, typename BinPred>
+Fwd search(input_sequence_range<Fwd> range,
+           input_sequence_range<Fwd2> range2,
+           BinPred op)
+{
+    return std::search(range.first, range.second,
+                       range2.first, range2.second,
+                       op);
+}
+
+template <typename Fwd, typename Fwd2>
+Fwd find_end(input_sequence_range<Fwd> range,
+             input_sequence_range<Fwd2> range2)
+{
+    return std::find_end(range.first, range.second,
+                         range2.first, range2.second);
+}
+
+template <typename Fwd, typename Fwd2, typename BinPred>
+Fwd find_end(input_sequence_range<Fwd> range,
+             input_sequence_range<Fwd2> range2,
+             BinPred op)
+{
+    return std::find_end(range.first, range.second,
+                         range2.first, range2.second,
+                         op);
+}
+
+template <typename Fwd, typename Size, typename V>
+Fwd search_n(input_sequence_range<Fwd> range, Size n, const V& val)
+{
+    return std::search_n(range.first, range.second, n, val);
+}
+
+template <typename Fwd, typename Size, typename V, typename BinPred>
+Fwd search_n(input_sequence_range<Fwd> range, Size n, const V& val, BinPred op)
+{
+    return std::search(range.first, range.second, n, val, op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
