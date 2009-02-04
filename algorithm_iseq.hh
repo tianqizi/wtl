@@ -200,6 +200,30 @@ Out transform(input_sequence_range<In> range,
                           res, op);
 }
 
+template <typename Fwd>
+Fwd unique(input_sequence_range<Fwd> range)
+{
+    return std::unique(range.first, range.second);
+}
+
+template <typename Fwd, typename BinPred>
+Fwd unique(input_sequence_range<Fwd> range, BinPred op)
+{
+    return std::unique(range.first, range.second, op);
+}
+
+template <typename Fwd, typename Out>
+Out unique_copy(input_sequence_range<Fwd> range, Out res)
+{
+    return std::unique_copy(range.first, range.second, res);
+}
+
+template <typename Fwd, typename Out, typename BinPred>
+Out unique_copy(input_sequence_range<Fwd> range, Out res, BinPred op)
+{
+    return std::unique_copy(range.first, range.second, res, op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
