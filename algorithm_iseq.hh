@@ -183,6 +183,23 @@ Out copy_backward(input_sequence_range<Bi> range, Bi2 result)
     return std::copy_backward(range.first, range.second, result);
 }
 
+template <typename In, typename Out, typename Op>
+Out transform(input_sequence_range<In> range, Out res, Op op)
+{
+    return std::transform(range.first, range.second, res, op);
+}
+
+template <typename In, typename In2, typename Out, typename Op>
+Out transform(input_sequence_range<In> range,
+              input_sequence_range<In2> range2,
+              Out res,
+              Op op)
+{
+    return std::transform(range.first, range.second,
+                          range2.first, range2.second,
+                          res, op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
