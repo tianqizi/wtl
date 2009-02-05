@@ -224,6 +224,34 @@ Out unique_copy(input_sequence_range<Fwd> range, Out res, BinPred op)
     return std::unique_copy(range.first, range.second, res, op);
 }
 
+template <typename Fwd, typename V>
+void replace(input_sequence_range<Fwd> range, const V& val, const V& new_val)
+{
+    std::replace(range.first, range.second, val, new_val);
+}
+
+template <typename Fwd, typename Pred, typename V>
+void replace_if(input_sequence_range<Fwd> range, Pred op, const V& new_val)
+{
+    std::replace_if(range.first, range.second, op, new_val);
+}
+
+template <typename Fwd, typename Out, typename V>
+void replace_copy(input_sequence_range<Fwd> range,
+                  Out res,
+                  const V& val, const V& new_val)
+{
+    std::replace_copy(range.first, range.second, res, val, new_val);
+}
+
+template <typename Fwd, typename Out, typename Pred, typename V>
+void replace_copy_if(input_sequence_range<Fwd> range,
+                Out res,
+                Pred op, const V& new_val)
+{
+    std::replace_copy_if(range.first, range.second, res, op, new_val);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
