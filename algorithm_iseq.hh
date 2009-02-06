@@ -252,6 +252,30 @@ void replace_copy_if(input_sequence_range<Fwd> range,
     std::replace_copy_if(range.first, range.second, res, op, new_val);
 }
 
+template <typename Fwd, typename V>
+Fwd remove(input_sequence_range<Fwd> range, const V& val)
+{
+    return std::remove(range.first, range.second, val);
+}
+
+template <typename Fwd, typename Pred>
+Fwd remove_if(input_sequence_range<Fwd> range, Pred op)
+{
+    return std::remove_if(range.first, range.second, op);
+}
+
+template <typename In, typename Out, typename V>
+Out remove_copy(input_sequence_range<In> range, Out res, const V& val)
+{
+    return std::remove_copy(range.first, range.second, res, val);
+}
+
+template <typename In, typename Out, typename Pred>
+Out remove_copy_if(input_sequence_range<In> range, Out res, Pred op)
+{
+    return std::remove_copy_if(range.first, range.second, res, op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
