@@ -276,6 +276,20 @@ Out remove_copy_if(input_sequence_range<In> range, Out res, Pred op)
     return std::remove_copy_if(range.first, range.second, res, op);
 }
 
+template <typename Fwd, typename V>
+void fill(input_sequence_range<Fwd> range, const V& val)
+{
+    std::fill(range.first, range.second, val);
+}
+
+template <typename Fwd, typename Gen>
+void generate(input_sequence_range<Fwd> range, Gen g)
+{
+    std::generate(range.first, range.second, g);
+}
+
+generate
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
