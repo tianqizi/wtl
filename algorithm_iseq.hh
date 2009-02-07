@@ -288,6 +288,208 @@ void generate(input_sequence_range<Fwd> range, Gen g)
     std::generate(range.first, range.second, g);
 }
 
+template <typename Bi>
+void reverse(input_sequence_range<Bi> range)
+{
+    std::reverse(range.first, range.second);
+}
+
+template <typename Bi, typename Out>
+Out reverse_copy(input_sequence_range<Bi> range, Out res)
+{
+    return std::reverse_copy(range.first, range.second, res);
+}
+
+template <typename Fwd>
+void rotate(input_sequence_range<Fwd> range, Fwd middle)
+{
+    std::rotate(range.first, middle, range.second);
+}
+
+template <typename Fwd, typename Out>
+Out rotate_copy(input_sequence_range<Fwd> range, Fwd middle, Out res)
+{
+    return std::rotate_copy(range.first, middle, range.second, res);
+}
+
+template <typename Ran>
+void random_shuffle(input_sequence_range<Ran> range)
+{
+    std::random_shuffle(range.first, range.second);
+}
+
+template <typename Ran, typename Gen>
+void random_shuffle(input_sequence_range<Ran> range, Gen& g)
+{
+    std::random_shuffle(range.first, range.second, g);
+}
+
+template <typename Fwd, typename Fwd2>
+Fwd2 swap_ranges(input_sequence_range<Fwd> range, Fwd2 first2)
+{
+    return std::swap_ranges(range.first, range.second, first2);
+}
+
+template <typename Ran>
+void sort(input_sequence_range<Ran> range)
+{
+    std::sort(range.first, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void sort(input_sequence_range<Ran> range, Cmp c)
+{
+    std::sort(range.first, range.second, c);
+}
+
+template <typename Ran>
+void stable_sort(input_sequence_range<Fwd> range)
+{
+    std::sort(range.first, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void stable_sort(input_sequence_range<Fwd> range, Cmp c)
+{
+    std::sort(range.first, range.second, c);
+}
+
+template <typename Ran>
+void partial_sort(input_sequence_range<Ran> range, Ran middle)
+{
+    std::partial_sort(range.first, middle, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void partial_sort(input_sequence_range<Ran> range, Ran middle, Cmp c)
+{
+    std::partial_sort(range.first, middle, range.second, c);
+}
+
+template <typename In, typename Ran>
+Ran partial_sort_copy(input_sequence_range<In> range,
+                      input_sequence_range<Ran> range2)
+{
+    return std::partial_sort(range.first, range.second,
+                             range2.first, range2.second);
+}
+
+template <typename In, typename Ran, typename Cmp>
+Ran partial_sort_copy(input_sequence_range<In> range,
+                      input_sequence_range<Ran> range2,
+                      Cmp c)
+{
+    return std::partial_sort(range.first, range.second,
+                             range2.first, range2.second,
+                             c);
+}
+
+template <typename Ran>
+void nth_element(input_sequence_range<Ran> range, Ran nth)
+{
+    std::nth_element(range.first, nth, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void nth_element(input_sequence_range<Ran> range, Ran nth, Cmp c)
+{
+    std::nth_element(range.first, nth, range.second, c);
+}
+
+template <typename Ran, typename V>
+bool binary_search(input_sequence_range<Ran> range, const V& val)
+{
+    return std::binary_search(range.first, range.second, val);
+}
+
+template <typename Ran, typename V, typename Cmp>
+bool binary_search(input_sequence_range<Ran> range, const V& val, Cmp c)
+{
+    return std::binary_search(range.first, range.second, val, c);
+}
+
+template <typename Fwd, typename V>
+Fwd lower_bound(input_sequence_range<Fwd> range, const V& val)
+{
+    return std::lower_bound(range.first, range.second, val);
+}
+
+template <typename Fwd, typename V, typename Cmp>
+Fwd lower_bound(input_sequence_range<Fwd> range, const V& val, Cmp c)
+{
+    return std::lower_bound(range.first, range.second, val, c);
+}
+
+template <typename Fwd, typename V>
+Fwd upper_bound(input_sequence_range<Fwd> range, const V& val)
+{
+    return std::upper_bound(range.first, range.second, val);
+}
+
+template <typename Fwd, typename V, typename Cmp>
+Fwd upper_bound(input_sequence_range<Fwd> range, const V& val, Cmp c)
+{
+    return std::upper_bound(range.first, range.second, val, c);
+}
+
+template <typename Fwd, typename V>
+std::pair<Fwd,Fwd> equal_range(input_sequence_range<Fwd> range, const V& val)
+{
+    return std::equal_range(range.first, range.second, val);
+}
+
+template <typename Fwd, typename V, typename Cmp>
+std::pair<Fwd,Fwd> equal_range(input_sequence_range<Fwd> range,
+                               const V& val, Cmp c)
+{
+    return std::equal_range(range.first, range.second, val, c);
+}
+
+template <typename In, typename In2, typename Out>
+Out merge(input_sequence_range<In> range,
+          input_sequence_range<In2> range2,
+          Out res)
+{
+    return std::merge(range.first, range.second,
+                      range2.first, range2.second,
+                      res);
+}
+
+template <typename In, typename In2, typename Out, typename Cmp>
+Out merge(input_sequence_range<In> range,
+          input_sequence_range<In2> range2,
+          Out res,
+          Cmp c)
+{
+    return std::merge(range.first, range.second,
+                      range2.first, range2.second,
+                      res, c);
+}
+
+template <typename Bi>
+void inplace_merge(input_sequence_range<Bi> range, Bi middle)
+{
+    std::inplace_merge(range.first, middle, range.second);
+}
+
+template <typename Bi, typename Cmp>
+void inplace_merge(input_sequence_range<Bi> range, Bi middle, Cmp c)
+{
+    std::inplace_merge(range.first, middle, range.second, c);
+}
+
+template <typename Bi, typename Pred>
+Bi partition(input_sequence_range<Bi> range, Pred op)
+{
+    return std::partition(range.first, first.second, op);
+}
+
+template <typename Bi, typename Pred>
+Bi stable_partition(input_sequence_range<Bi> range, Pred op)
+{
+    return std::stable_partition(range.first, range.second, op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
