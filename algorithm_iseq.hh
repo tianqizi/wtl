@@ -288,8 +288,6 @@ void generate(input_sequence_range<Fwd> range, Gen g)
     std::generate(range.first, range.second, g);
 }
 
-generate
-
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
