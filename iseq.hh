@@ -76,6 +76,33 @@ input_sequence_range<Arr*> iseq(Arr* a, Size n)
     return input_sequence_range<Arr*>(a, a + n);
 }
 
+/// Helper function to generate an input_sequence_range which expresses the
+/// range of a given stream, from begin to end.
+///
+/// This function can be used with standard aglrothims extensions as a
+/// shorthand for invoking algorithms in the common manner, over an entire
+/// stream using a stream iterator.  For instance, instead of invoking
+///
+///  iter pos = find(istream_iterator<int>(cin), istream_iterator<int>(), 42);
+///
+/// you may run
+///
+///  iter pos = find(iseq<int>(cin), 42);
+///
+/// where cin is some input stream.
+///
+/// \param s An input stream.
+///
+/// \param T The type of values expected from the input stream s.
+///
+/// \return A range over the given stream, from begin to end.
+template<typename T, typename Ch, typename Tr>
+input_sequence_range<std::istream_iterator<T> > iseq(std::basic_istream<Ch,Tr>& s)
+{
+    typedef std::istream_iterator<T> siter;
+    return input_sequence_range<siter>(siter(s), siter());
+}
+
 } // namespace wt
 
 #endif // ISEQ_HH_
