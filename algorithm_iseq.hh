@@ -105,21 +105,17 @@ bool equal(input_sequence_range<In> range,
 }
 
 template <typename In, typename In2>
-std::pair<In,In2> mismatch(input_sequence_range<In> range,
-                           input_sequence_range<In2> range2)
+std::pair<In,In2> mismatch(input_sequence_range<In> range, In2 first2)
 {
-    return std::mismatch(range.first, range.second,
-                         range2.first, range2.second);
+    return std::mismatch(range.first, range.second, first2);
 }
 
 template <typename In, typename In2, typename BinPred>
 std::pair<In,In2> mismatch(input_sequence_range<In> range,
-                           input_sequence_range<In2> range2,
+                           In2 first2,
                            BinPred op)
 {
-    return std::mismatch(range.first, range.second,
-                         range2.first, range2.second,
-                         op);
+    return std::mismatch(range.first, range.second, first2, op);
 }
 
 template <typename Fwd, typename Fwd2>
