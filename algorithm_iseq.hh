@@ -4,13 +4,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// STL extensions
 ///
-/// iseq algorithms are wrappers for the standard algorithms that make calling
-/// the algorithms slightly easier.  These wrappers take a single parameter,
-/// called an "iseq" (for "input sequence"), instead of the usual two iterators
-/// that represent the range the algorithm will act upon.  The iseq expresses
-/// the entire range from begin to end of a sequence.  Thus,
-///
-/// algorithm(iseq(c)) == algorithm(c.begin(), c.end())
+/// iseq algorithms are wrappers for algorithms that make calling the
+/// algorithms slightly easier.  These wrappers take a single parameter, called
+/// an "iseq" (for "input sequence"), instead of the usual two iterators that
+/// represent the range the algorithm will act upon.  The iseq expresses the
+/// entire range from begin to end of a sequence.  Thus, algorithm(iseq(c)) ==
+/// algorithm(c.begin(), c.end())
 ///
 /// The iseq() function is a helper for creating an object of the class
 /// input_sequence_range<C>, which holds the range begin-to-end of the given
@@ -21,10 +20,13 @@
 /// Matan Nassau <matan.nassau@gmail.com>
 ///////////////////////////////////////////////////////////////////////////////
 
-#include <wtl/iseq.hh>
 #include <algorithm>
+#include <wtl/iseq.hh>
+#include <wtl/algorithm>
 
 namespace wt {
+
+// WRAPPERS FOR STANDARD ALGORITHMS
 
 template <typename Fwd>
 Fwd adjacent_find(input_sequence_range<Fwd> range)
@@ -692,6 +694,27 @@ template <typename Bi, typename Cmp>
 bool prev_permutation(input_sequence_range<Bi> range, Cmp c)
 {
     return std::prev_permutation(range.first, range.second, c);
+}
+
+
+// WRAPPERS FOR EXTENSION ALGORITHMS
+
+template <typename In, typename In2>
+std::pair<In,In2> match(input_sequence_range<In> range,
+                        input_sequence_range<In2> range2)
+{
+    return match(range.first, range.second,
+                 range2.first, range2.second);
+}
+
+template <typename In, typename In2, typename BinPred>
+std::pair<In,In2> match(input_sequence_range<In> range,
+                        input_sequence_range<In2> range2,
+                        BinPred op)
+{
+    return match(range.first, range.second,
+                 range2.first, range2.second,
+                 op);
 }
 
 } // namespace wt
