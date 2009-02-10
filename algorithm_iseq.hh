@@ -490,6 +490,217 @@ Bi stable_partition(input_sequence_range<Bi> range, Pred op)
     return std::stable_partition(range.first, range.second, op);
 }
 
+template <typename In, typename In2>
+bool includes(input_sequence_range<In> range, input_sequence_range<In2> range2)
+{
+    return std::includes(range.first, range.second,
+                         range2.first, range2.second);
+}
+
+template <typename In, typename In2, typename Cmp>
+bool includes(input_sequence_range<In> range,
+              input_sequence_range<In2> range2,
+              Cmp c)
+{
+    return std::includes(range.first, range.second,
+                         range2.first, range2.second,
+                         c);
+}
+
+template <typename In, typename In2, typename Out>
+Out set_union(input_sequence_range<In> range,
+              input_sequence_range<In2> range2,
+              Out res)
+{
+    return std::set_union(range.first, range.second,
+                          range.first, range.second,
+                          res);
+}
+
+template <typename In, typename In2, typename Out, typename Cmp>
+Out set_union(input_sequence_range<In> range,
+              input_sequence_range<In2> range2,
+              Out res, Cmp c)
+{
+    return std::set_union(range.first, range.second,
+                          range.first, range.second,
+                          res, c);
+}
+
+template <typename In, typename In2, typename Out>
+Out set_intersection(input_sequence_range<In> range,
+                     input_sequence_range<In2> range2,
+                     Out res)
+{
+    return std::set_intersection(range.first, range.second,
+                                 range.first, range.second,
+                                 res);
+}
+
+template <typename In, typename In2, typename Out, typename Cmp>
+Out set_intersection(input_sequence_range<In> range,
+                     input_sequence_range<In2> range2,
+                     Out res, Cmp c)
+{
+    return std::set_intersection(range.first, range.second,
+                                 range.first, range.second,
+                                 res, c);
+}
+
+template <typename In, typename In2, typename Out>
+Out set_difference(input_sequence_range<In> range,
+                   input_sequence_range<In2> range2,
+                   Out res)
+{
+    return std::set_difference(range.first, range.second,
+                               range.first, range.second,
+                               res);
+}
+
+template <typename In, typename In2, typename Out, typename Cmp>
+Out set_difference(input_sequence_range<In> range,
+                   input_sequence_range<In2> range2,
+                   Out res, Cmp c)
+{
+    return std::set_difference(range.first, range.second,
+                               range.first, range.second,
+                               res, c);
+}
+
+template <typename In, typename In2, typename Out>
+Out set_symmetric_difference(input_sequence_range<In> range,
+                             input_sequence_range<In2> range2,
+                             Out res)
+{
+    return std::set_symmetric_difference(range.first, range.second,
+                                         range.first, range.second,
+                                         res);
+}
+
+template <typename In, typename In2, typename Out, typename Cmp>
+Out set_symmetric_difference(input_sequence_range<In> range,
+                             input_sequence_range<In2> range2,
+                             Out res, Cmp c)
+{
+    return std::set_symmetric_difference(range.first, range.second,
+                                         range.first, range.second,
+                                         res, c);
+}
+
+template <typename Ran>
+void push_heap(input_sequence_range<Ran> range)
+{
+    std::push_heap(range.first, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void push_heap(input_sequence_range<Ran> range, Cmp c)
+{
+    std::push_heap(range.first, range.second, c);
+}
+
+template <typename Ran>
+void pop_heap(input_sequence_range<Ran> range)
+{
+    std::pop_heap(range.first, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void pop_heap(input_sequence_range<Ran> range, Cmp c)
+{
+    std::pop_heap(range.first, range.second, c);
+}
+
+template <typename Ran>
+void make_heap(input_sequence_range<Ran> range)
+{
+    std::make_heap(range.first, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void make_heap(input_sequence_range<Ran> range, Cmp c)
+{
+    std::make_heap(range.first, range.second, c);
+}
+
+template <typename Ran>
+void sort_heap(input_sequence_range<Ran> range)
+{
+    std::sort_heap(range.first, range.second);
+}
+
+template <typename Ran, typename Cmp>
+void sort_heap(input_sequence_range<Ran> range, Cmp c)
+{
+    std::sort_heap(range.first, range.second, c);
+}
+
+template <typename Fwd>
+Fwd min_element(input_sequence_range<Fwd> range)
+{
+    return std::min_element(range.first, range.second);
+}
+
+template <typename Fwd, typename Cmp>
+Fwd min_element(input_sequence_range<Fwd> range, Cmp c)
+{
+    return std::min_element(range.first, range.second, c);
+}
+
+template <typename Fwd>
+Fwd max_element(input_sequence_range<Fwd> range)
+{
+    return std::max_element(range.first, range.second);
+}
+
+template <typename Fwd, typename Cmp>
+Fwd max_element(input_sequence_range<Fwd> range, Cmp c)
+{
+    return std::max_element(range.first, range.second, c);
+}
+
+template <typename In, typename In2>
+bool lexicographical_compare(input_sequence_range<In> range,
+                             input_sequence_range<In2> range2)
+{
+    return std::lexicographical_compare(range.first, range.second,
+                                        range2.first, range2.second);
+}
+
+template <typename In, typename In2, typename Cmp>
+bool lexicographical_compare(input_sequence_range<In> range,
+                             input_sequence_range<In2> range2,
+                             Cmp c)
+{
+    return std::lexicographical_compare(range.first, range.second,
+                                        range2.first, range2.second,
+                                        c);
+}
+
+template <typename Bi>
+bool next_permutation(input_sequence_range<Bi> range)
+{
+    return std::next_permutation(range.first, range.second);
+}
+
+template <typename Bi, typename Cmp>
+bool next_permutation(input_sequence_range<Bi> range, Cmp c)
+{
+    return std::next_permutation(range.first, range.second, c);
+}
+
+template <typename Bi>
+bool prev_permutation(input_sequence_range<Bi> range)
+{
+    return std::prev_permutation(range.first, range.second);
+}
+
+template <typename Bi, typename Cmp>
+bool prev_permutation(input_sequence_range<Bi> range, Cmp c)
+{
+    return std::prev_permutation(range.first, range.second, c);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
