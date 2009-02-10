@@ -21,6 +21,7 @@
 /// Matan Nassau <matan.nassau@gmail.com>
 ///////////////////////////////////////////////////////////////////////////////
 
+#include <wtl/iseq.hh>
 #include <algorithm>
 
 namespace wt {
