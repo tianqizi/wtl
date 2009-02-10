@@ -36,9 +36,9 @@ Fwd adjacent_find(input_sequence_range<Fwd> range)
 /// consecutive elements in the range.  If no such pair is found, the function
 /// returns last.
 template <typename Fwd, typename BinPred>
-Fwd adjacent_find(input_sequence_range<Fwd> range, BinPred pred)
+Fwd adjacent_find(input_sequence_range<Fwd> range, BinPred op)
 {
-    return std::adjacent_find(range.first, range.second, pred);
+    return std::adjacent_find(range.first, range.second, op);
 }
 
 template <typename In, typename Op>
@@ -88,7 +88,7 @@ template <typename In, typename V, typename BinPred>
 typename std::iterator_traits<In>::difference_type
 count_if(input_sequence_range<In> range, const V& val, BinPred op)
 {
-    return std::count(range.first, range.second, val, pred);
+    return std::count(range.first, range.second, val, op);
 }
 
 template <typename In, typename In2>
@@ -178,7 +178,7 @@ Out copy(input_sequence_range<In> range, Out result)
 }
 
 template <typename Bi, typename Bi2>
-Out copy_backward(input_sequence_range<Bi> range, Bi2 result)
+Bi2 copy_backward(input_sequence_range<Bi> range, Bi2 result)
 {
     return std::copy_backward(range.first, range.second, result);
 }
@@ -343,13 +343,13 @@ void sort(input_sequence_range<Ran> range, Cmp c)
 }
 
 template <typename Ran>
-void stable_sort(input_sequence_range<Fwd> range)
+void stable_sort(input_sequence_range<Ran> range)
 {
     std::sort(range.first, range.second);
 }
 
 template <typename Ran, typename Cmp>
-void stable_sort(input_sequence_range<Fwd> range, Cmp c)
+void stable_sort(input_sequence_range<Ran> range, Cmp c)
 {
     std::sort(range.first, range.second, c);
 }
@@ -481,7 +481,7 @@ void inplace_merge(input_sequence_range<Bi> range, Bi middle, Cmp c)
 template <typename Bi, typename Pred>
 Bi partition(input_sequence_range<Bi> range, Pred op)
 {
-    return std::partition(range.first, first.second, op);
+    return std::partition(range.first, range.second, op);
 }
 
 template <typename Bi, typename Pred>
