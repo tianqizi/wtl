@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include <utility>
+#include <iterator>
 
 namespace wt {
 
@@ -46,6 +47,35 @@ input_sequence_range<typename C::iterator> iseq(C& c)
     return input_sequence_range<typename C::iterator>(c.begin(), c.end());
 }
 
+/// Helper function to generate an input_sequence_range which expresses the
+/// range of a given primitive array, from begin to end.
+///
+/// This function can be used with standard aglrothims extensions as a
+/// shorthand for invoking algorithms in the common manner, over an entire
+/// array.  For instance, instead of invoking
+///
+///  iter pos = find(arr, arr + 10, 42);
+///
+/// you may run
+///
+///  iter pos = find(iseq(arr, 10), 42);
+///
+/// where arr is some primitive array.
+///
+/// You must pass the size of the array, as it would otherwise be expensive for
+/// the function to find it out by itself.
+///
+/// \param a A primitive array.
+///
+/// \param n The number of elements in the array.
+///
+/// \return A range over the given array, from begin to end.
+template<typename Arr, typename Size>
+input_sequence_range<Arr*> iseq(Arr* a, Size n)
+{
+    return input_sequence_range<Arr*>(a, a + n);
 }
+
+} // namespace wt
 
 #endif // ISEQ_HH_
