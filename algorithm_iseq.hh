@@ -699,6 +699,12 @@ bool prev_permutation(input_sequence_range<Bi> range, Cmp c)
 
 // WRAPPERS FOR EXTENSION ALGORITHMS
 
+template<typename In, typename Out, typename Pred>
+Out copy_if(input_sequence_range<In> rage, Out res, Pred op)
+{
+    return copy_if(range.first, range.second, res, op);
+}
+
 template <typename In, typename In2>
 std::pair<In,In2> match(input_sequence_range<In> range,
                         input_sequence_range<In2> range2)
