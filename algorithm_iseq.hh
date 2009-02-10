@@ -4,6 +4,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// STL extensions
 ///
+/// iseq algorithms are wrappers for the standard algorithms that make calling
+/// the algorithms slightly easier.  These wrappers take a single parameter,
+/// called an "iseq" (for "input sequence"), instead of the usual two iterators
+/// that represent the range the algorithm will act upon.  The iseq expresses
+/// the entire range from begin to end of a sequence.  Thus,
+///
+/// algorithm(iseq(c)) == algorithm(c.begin(), c.end())
+///
+/// The iseq() function is a helper for creating an object of the class
+/// input_sequence_range<C>, which holds the range begin-to-end of the given
+/// container.
+///
 /// January 2009
 ///
 /// Matan Nassau <matan.nassau@gmail.com>
@@ -13,28 +25,12 @@
 
 namespace wt {
 
-/// Calls the std::adjacent_find() algorithm for an entire sequence, begin to
-/// end.
-///
-/// \param range A range over a container.
-///
-/// \return An iterator to the first element of the first pair of equal
-/// consecutive elements in the range.  If no such pair is found, the function
-/// returns last.
 template <typename Fwd>
 Fwd adjacent_find(input_sequence_range<Fwd> range)
 {
     return std::adjacent_find(range.first, range.second);
 }
 
-/// Calls the std::adjacent_find() algorithm for an entire sequence, begin to
-/// end, with the given binary predicate.
-///
-/// \param range A range over a container.
-///
-/// \return An iterator to the first element of the first pair of equal
-/// consecutive elements in the range.  If no such pair is found, the function
-/// returns last.
 template <typename Fwd, typename BinPred>
 Fwd adjacent_find(input_sequence_range<Fwd> range, BinPred op)
 {
