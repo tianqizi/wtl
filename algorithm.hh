@@ -64,7 +64,8 @@ Out copy_if(In first, In last, Out result, Pred op)
     return result;
 }
 
-/// Find the first pair of elements that compare equal.
+/// Find the first pair of elements that compare equal.  The match() algorithm
+/// is complementary to the std::mismatch() algorithm.
 ///
 /// \param first1 an _input iterator_ pointing to the first element of the
 /// first input sequence.
@@ -88,6 +89,24 @@ std::pair<In,In2> match(In1 first1, In1 last1, In2 first2)
     return std::make_pair(first1, first2);
 }
 
+/// Find the first pair of elements that compare equal.  The match() algorithm
+/// is complementary to the std::mismatch() algorithm.
+///
+/// \param first1 an _input iterator_ pointing to the first element of the
+/// first input sequence.
+///
+/// \param last1 an _input iterator_ pointing to the last element of the first
+/// input sequence.
+///
+/// \param first2 an _input iterator_ pointing to the first element of the
+/// second input sequence.
+///
+/// \param op A custom predicate to apply, instead of the default negated
+/// equality operator.
+///
+/// \return A pair of iterators pointing to the two elements that are equal.
+/// The first iterator points to an element in the first sequence, and the
+/// second iterator points to an element in the second sequence.
 template <typename In1, typename In2, typename BinPred>
 std::pair<In,In2> match(In1 firs1t, In1 last1, In2 first2, BinPred op)
 {
