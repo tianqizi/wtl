@@ -70,8 +70,8 @@ input_sequence_range<typename C::iterator> iseq(C& c)
 /// \param n The number of elements in the array.
 ///
 /// \return A range over the given array, from begin to end.
-template<typename Arr, typename Size>
-input_sequence_range<Arr*> iseq(Arr* a, Size n)
+template<typename Arr>
+input_sequence_range<Arr*> iseq(Arr* a, typename std::iterator_traits<Arr*>::difference_type n)
 {
     return input_sequence_range<Arr*>(a, a + n);
 }
