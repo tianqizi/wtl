@@ -119,4 +119,63 @@ std::pair<In1,In2> match(In1 first1, In1 last1, In2 first2, BinPred op)
 
 }
 
+/// Find the first element in sequence a that doesn't exist in sequence b.
+///
+/// \param first1 an _input iterator_ pointing to the first element of the
+/// first input sequence.
+///
+/// \param last1 an _input iterator_ pointing to the last element of the first
+/// input sequence.
+///
+/// \param first2 a _forward iterator_ pointing to the first element of the
+/// second input sequence.
+///
+/// \param last2 a _forward iterator_ pointing to the last element of the
+/// second input sequence.
+///
+/// \return An iterator pointing to the first element that doesn't exist in the
+/// second sequence if such an element exist, or the end iterator of the first
+/// sequence if no such element exists.
+template<typename In, typename Fwd>
+In find_first_not_of(In first1, In last1, Fwd first2, Fwd last2)
+{
+    for (; first1 != last1; ++first1) {
+        Fwd iter = first2;
+        for (; iter != last2 && *first1 != *iter; ++iter);
+        if( iter == last2 ) return first1;
+    }
+    return last1;
+}
+
+/// Find the first element in sequence a that doesn't exist in sequence b.
+///
+/// \param first1 an _input iterator_ pointing to the first element of the
+/// first input sequence.
+///
+/// \param last1 an _input iterator_ pointing to the last element of the first
+/// input sequence.
+///
+/// \param first2 a _forward iterator_ pointing to the first element of the
+/// second input sequence.
+///
+/// \param last2 a _forward iterator_ pointing to the last element of the
+/// second input sequence.
+///
+/// \param op A custom predicate to apply, instead of the default equality
+/// operator.
+///
+/// \return An iterator pointing to the first element that doesn't exist in the
+/// second sequence if such an element exist, or the end iterator of the first
+/// sequence if no such element exists.
+template<typename In, typename Fwd, typename BinPred>
+In find_first_not_of(In first1, In last1, Fwd first2, Fwd last2, BinPred op)
+{
+    for (; first1 != last1; ++first1) {
+        Fwd iter = first2;
+        for (; iter != last2 && !op(*first1, *iter); ++iter);
+        if( iter == last2 ) return first1;
+    }
+    return last1;
+}
+
 #endif // WTSTL_ALGORITHM_HH_

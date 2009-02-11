@@ -723,6 +723,24 @@ std::pair<In,In2> match(input_sequence_range<In> range,
                  op);
 }
 
+template<typename In, typename Fwd>
+In find_first_not_of(input_sequence_range<In> range,
+                     input_sequence_range<Fwd> range2)
+{
+    return find_first_not_of(range.first, range.second,
+                             range2.first, range2.second);
+}
+
+template<typename In, typename Fwd, typename BinPred>
+In find_first_not_of(input_sequence_range<In> range,
+                     input_sequence_range<Fwd> range2,
+                     BinPred op)
+{
+    return find_first_not_of(range.first, range.second,
+                             range2.first, range2.second,
+                             op);
+}
+
 } // namespace wt
 
 #endif // ALGORITHM_ISEQ_HH_
