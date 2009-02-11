@@ -103,6 +103,38 @@ input_sequence_range<std::istream_iterator<T> > iseq(std::basic_istream<Ch,Tr>& 
     return input_sequence_range<siter>(siter(s), siter());
 }
 
+/// Helper function to generate an input_sequence_range which expresses the
+/// range of two given iterators.
+///
+/// This function can be used with standard aglrothims extensions,
+/// complementing the other iseq() templates.  By itself it may seem like not
+/// much help comparing to invoking algorithms in the standard manner, with two
+/// iterators.  Its intent, however, is to prevent an explosion of verloads for
+/// new algorithms.  You may write a single version for your next algorithm
+/// that takes an input_sequence_range as its range argument, as opposed to
+/// writing one overload with two iterator arguments and another with an
+/// input_sequence_range argument.
+///
+/// To use, instead of calling
+///
+///  iter pos = find(cont.begin(), cont.end(), 42);
+///
+/// call
+///
+///  iter pos = find(iseq(cont.begin(), cont.end()), 42);
+///
+/// where cont is some container.
+///
+/// \param c A container.  The container must support the begin() and end()
+/// function, each returning an interator pointing into the container.
+///
+/// \return A range over the given container, from begin to end.
+template<typename Iter>
+input_sequence_range<Iter> iseq(Iter first, Iter last)
+{
+    return input_sequence_range<Iter>(first, last);
+}
+
 } // namespace wt
 
 #endif // ISEQ_HH_
