@@ -176,6 +176,23 @@ In find_first_not_of(In first1, In last1, Fwd first2, Fwd last2, BinPred op)
         if( iter == last2 ) return first1;
     }
     return last1;
+
+/// NULL
+class Nothing {
+public:
+  Nothing() { }
+
+  template<typename T>
+    operator T*() const { return 0; } // support implicit-cast to type T*
+
+  template<typename C, typename T>
+    operator T C::*() const { return 0; } // implicit-cast to ptr-to-member C::*
+
+private:
+  void operator&() const; // do not allow taking address of.
+};
+const Nothing nil;
+
 }
 
 #endif // WTSTL_ALGORITHM_HH_
