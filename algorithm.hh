@@ -61,6 +61,58 @@ Out copy_if(In first, In last, Out result, Pred op)
     return result;
 }
 
+/// Copy elements from one container into another until a predicate is
+/// satisfied.
+///
+/// \param first An _input iterator_ pointing to the first element of the input
+/// sequence.
+///
+/// \param last An _input iterator_ pointing to the last element of the input
+/// sequence.
+///
+/// \param result An _output iterator_ pointing to the container into which the
+/// elements should be copied.
+///
+/// \param op A predicate which elements to be copied must satisfy.  When the
+/// predicate is satisfied the copy procedure stops.  The predicate may be a
+/// function pointer or a function object.
+///
+/// \return An iterator pointing to one-past-the-last element of the output
+/// container.
+template<typename In, typename Out, typename Pred>
+Out copy_until(In first, In last, Out res, Pred cond)
+{
+    while( first != last && !cond(*first) )
+        *res++ = first++;
+    return res;
+}
+
+/// Copy elements from one container into another while a predicate is
+/// satisfied.
+///
+/// \param first An _input iterator_ pointing to the first element of the input
+/// sequence.
+///
+/// \param last An _input iterator_ pointing to the last element of the input
+/// sequence.
+///
+/// \param result An _output iterator_ pointing to the container into which the
+/// elements should be copied.
+///
+/// \param op A predicate which elements to be copied must satisfy.  When the
+/// predicate isn't satisfied the copy procedure stops.  The predicate may be a
+/// function pointer or a function object.
+///
+/// \return An iterator pointing to one-past-the-last element of the output
+/// container.
+template<typename In, typename Out, typename Pred>
+Out copy_while(In first, In last, Out res, Pred cond)
+{
+    while( first != last && cond(*first) )
+        *res++ = first++;
+    return res;
+}
+
 /// Find the first pair of elements that compare equal.  The match() algorithm
 /// is complementary to the std::mismatch() algorithm.
 ///
