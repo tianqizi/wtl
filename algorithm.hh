@@ -13,6 +13,9 @@
 
 namespace wt {
 
+/// NOTE that none of the algorithms perform a range check;  the iterators
+/// given are all assumed to be valid.
+
 /// Copy n elements from one container into another.
 ///
 /// \param first An _input iterator_ pointing to the first element of the input
@@ -25,9 +28,6 @@ namespace wt {
 ///
 /// \return An iterator pointing to one-past-the-last element of the output
 /// container.
-///
-/// Note that no range check is made;  the iterators given are all assumed to
-/// be valid.
 template<typename In, typename Size, typename Out>
 Out copy_n(In first, Size n, Out result)
 {
@@ -51,9 +51,6 @@ Out copy_n(In first, Size n, Out result)
 ///
 /// \return An iterator pointing to one-past-the-last element of the output
 /// container.
-///
-/// Note that no range check is made;  the iterators given are all assumed to
-/// be valid.
 template<typename In, typename Out, typename Pred>
 Out copy_if(In first, In last, Out result, Pred op)
 {
@@ -117,8 +114,6 @@ std::pair<In1,In2> match(In1 first1, In1 last1, In2 first2, BinPred op)
     return std::make_pair(first1, first2);
 }
 
-}
-
 /// Find the first element in sequence a that doesn't exist in sequence b.
 ///
 /// \param first1 an _input iterator_ pointing to the first element of the
@@ -176,6 +171,7 @@ In find_first_not_of(In first1, In last1, Fwd first2, Fwd last2, BinPred op)
         if( iter == last2 ) return first1;
     }
     return last1;
+}
 
 /// NULL
 class Nothing {
