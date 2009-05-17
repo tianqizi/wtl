@@ -23,6 +23,35 @@ struct input_sequence_range : public std::pair<In,In> {
 };
 
 /// Helper function to generate an input_sequence_range which expresses the
+/// range of a given const input sequence, from begin to end.
+///
+/// This function can be used with standard aglrothims extensions as a
+/// shorthand for invoking algorithms in the common manner, over an entire
+/// sequence.  For instance, instead of invoking
+///
+///  iter pos = find(cont.begin(), cont.end(), 42);
+///
+/// you can run
+///
+///  iter pos = find(iseq(cont), 42);
+///
+/// where cont is some container.  Because the returned range object holds
+/// const_iterators you can use this iseq() overload in an expression that
+/// takes constant values, such as temporals:
+///
+///  return find(iseq(cont), 1337);
+///
+/// \param c A container.  The container must support the begin() and end()
+/// function, each returning an interator pointing into the container.
+///
+/// \return A range over the given container, from begin to end.
+template<typename C>
+input_sequence_range<typename C::const_iterator> iseq(const C& c)
+{
+    return input_sequence_range<typename C::const_iterator>(c.begin(), c.end());
+}
+
+/// Helper function to generate an input_sequence_range which expresses the
 /// range of a given input sequence, from begin to end.
 ///
 /// This function can be used with standard aglrothims extensions as a
@@ -31,7 +60,7 @@ struct input_sequence_range : public std::pair<In,In> {
 ///
 ///  iter pos = find(cont.begin(), cont.end(), 42);
 ///
-/// you may run
+/// you can run
 ///
 ///  iter pos = find(iseq(cont), 42);
 ///
@@ -47,6 +76,7 @@ input_sequence_range<typename C::iterator> iseq(C& c)
     return input_sequence_range<typename C::iterator>(c.begin(), c.end());
 }
 
+
 /// Helper function to generate an input_sequence_range which expresses the
 /// range of a given primitive array, from begin to end.
 ///
@@ -56,7 +86,7 @@ input_sequence_range<typename C::iterator> iseq(C& c)
 ///
 ///  iter pos = find(arr, arr + 10, 42);
 ///
-/// you may run
+/// you can run
 ///
 ///  iter pos = find(iseq(arr, 10), 42);
 ///
@@ -85,7 +115,7 @@ input_sequence_range<Arr*> iseq(Arr* a, typename std::iterator_traits<Arr*>::dif
 ///
 ///  iter pos = find(istream_iterator<int>(cin), istream_iterator<int>(), 42);
 ///
-/// you may run
+/// you can run
 ///
 ///  iter pos = find(iseq<int>(cin), 42);
 ///
@@ -110,7 +140,7 @@ input_sequence_range<std::istream_iterator<T> > iseq(std::basic_istream<Ch,Tr>& 
 /// complementing the other iseq() templates.  By itself it may seem like not
 /// much help comparing to invoking algorithms in the standard manner, with two
 /// iterators.  Its intent, however, is to prevent an explosion of verloads for
-/// new algorithms.  You may write a single version for your next algorithm
+/// new algorithms.  You can write a single version for your next algorithm
 /// that takes an input_sequence_range as its range argument, as opposed to
 /// writing one overload with two iterator arguments and another with an
 /// input_sequence_range argument.
