@@ -35,6 +35,29 @@ Out copy_n(In first, Size n, Out result)
     return result;
 }
 
+/// Copy each of n elements if it satisfies a predicate.
+///
+/// \param first An _input iterator_ pointing to the first element of the input
+/// sequence.
+///
+/// \param n The count of elements that should be copied.
+///
+/// \param result An _output iterator_ pointing to the container into which the
+/// elements should be copied.
+///
+/// \param op A predicate which elements to be copied must satisfy.  The
+/// predicate may be a function pointer or a function object.
+///
+/// \return An iterator pointing to one-past-the-last element of the output
+/// container.
+template<typename In, typename Size, typename Out, typename Pred>
+Out copy_n(In first, Size n, Out result, Pred op)
+{
+    while( n-- > 0 )
+        if( op(*first) ) *result++ = *first++;
+    return result;
+}
+
 /// Copy elements which satisfy a predicate from one container into another.
 ///
 /// \param first An _input iterator_ pointing to the first element of the input
