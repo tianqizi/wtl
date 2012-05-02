@@ -15,7 +15,7 @@ Fwd uninitialized_copy(input_sequence_range<In> range, Fwd res)
 template <typename Fwd, typename V>
 void uninitialized_fill(input_sequence_range<Fwd> range, V val)
 {
-    std::uninitialized_copy(range.first, range.second, res);
+    std::uninitialized_fill(range.first, range.second, val);
 }
 
 } // namespace wt
