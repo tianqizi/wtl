@@ -16,74 +16,6 @@ namespace wt {
 /// NOTE that none of the algorithms perform a range check;  the iterators
 /// given are all assumed to be valid.
 
-/// Copy n elements from one container into another.
-///
-/// \param first An _input iterator_ pointing to the first element of the input
-/// sequence.
-///
-/// \param n The count of elements that should be copied.
-///
-/// \param result An _output iterator_ pointing to the container into which the
-/// elements should be copied.
-///
-/// \return An iterator pointing to one-past-the-last element of the output
-/// container.
-template<typename In, typename Size, typename Out>
-Out copy_n(In first, Size n, Out result)
-{
-    while( n-- > 0 ) *result++ = *first++;
-    return result;
-}
-
-/// Copy each of n elements if it satisfies a predicate.
-///
-/// \param first An _input iterator_ pointing to the first element of the input
-/// sequence.
-///
-/// \param n The count of elements that should be copied.
-///
-/// \param result An _output iterator_ pointing to the container into which the
-/// elements should be copied.
-///
-/// \param op A predicate which elements to be copied must satisfy.  The
-/// predicate may be a function pointer or a function object.
-///
-/// \return An iterator pointing to one-past-the-last element of the output
-/// container.
-template<typename In, typename Size, typename Out, typename Pred>
-Out copy_n(In first, Size n, Out result, Pred op)
-{
-    while( n-- > 0 )
-        if( op(*first) ) *result++ = *first++;
-    return result;
-}
-
-/// Copy elements which satisfy a predicate from one container into another.
-///
-/// \param first An _input iterator_ pointing to the first element of the input
-/// sequence.
-///
-/// \param last An _input iterator_ pointing to the last element of the input
-/// sequence.
-///
-/// \param result An _output iterator_ pointing to the container into which the
-/// elements should be copied.
-///
-/// \param op A predicate which elements to be copied must satisfy.  The
-/// predicate may be a function pointer or a function object.
-///
-/// \return An iterator pointing to one-past-the-last element of the output
-/// container.
-template<typename In, typename Out, typename Pred>
-Out copy_if(In first, In last, Out result, Pred op)
-{
-    while( first != last ) {
-        if( op(*first) ) *result++ = *first;
-        ++first;
-    }
-    return result;
-}
-
 /// Copy elements from one container into another until a predicate is
 /// satisfied.
 ///
@@ -247,23 +179,6 @@ In find_first_not_of(In first1, In last1, Fwd first2, Fwd last2, BinPred op)
     }
     return last1;
 }
-
-/// NULL
-class Nothing {
-public:
-  Nothing() { }
-
-  template<typename T>
-    operator T*() const { return 0; } // support implicit-cast to type T*
-
-  template<typename C, typename T>
-    operator T C::*() const { return 0; } // implicit-cast to ptr-to-member C::*
-
-private:
-  void operator&() const; // do not allow taking address of.
-};
-const Nothing nil;
-
 }
 
 #endif // WTSTL_ALGORITHM_HH_
